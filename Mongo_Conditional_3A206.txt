@@ -1,0 +1,204 @@
+1. Display employees whose gender is Male.
+
+db.emp_206.find(
+{GENDER : "Male"}
+)
+
+
+
+2. Display employees who belong to London city.
+
+db.emp_206.find(
+{
+	CITY : "London"
+}
+)
+
+3. Display employees whose salary is greater than 3500.
+
+db.emp_206.find({
+	SALARY : {$gt : 3500}
+})
+
+
+14. Display employees whose joining date is before 2015-01-01.
+
+db.emp_206.find({
+	JOININGDATE : {$lt : 	'2015-01-01T00:00:00' }
+})
+
+5. Display employees whose EID is greater than or equal to 7.
+
+db.emp_206.find({
+	EID : {$gte : 7 }
+})
+
+6. Display employees whose city is Landon or New York (use:IN)
+
+db.emp_206.find({
+	CITY : {$in : ['London', 'New York'] }
+})
+7. Display employees who do not belongs to Landon or New York (use: NOT IN)
+
+db.emp_206.find({
+	CITY : {$nin : ['London', 'New York'] }
+})
+
+8. Display the EID of those employee who lives in city London.
+
+db.emp_206.find({
+	CITY : "London"
+},
+{
+	EID : 1, _id : 0
+})
+
+9. Display first 2 employee names who lives in New york.
+
+db.emp_206.find({
+	CITY : "London"
+},
+{
+	ENAME : 1, _id : 0
+}).limit(2)
+
+
+10. Display next 2 employee after skipping first 2 whose city is London.
+
+db.emp_206.find({
+	CITY : "London"
+},
+{
+	ENAME : 1, _id : 0
+}).limit(2).skip(2)
+
+
+
+
+11. Display Male employees who lives Sydney.
+
+db.emp_206.find({
+	$and : [
+		{GENDER : "Male"},
+		{CITY : "Sydney"}
+	]
+})
+
+
+12. Display EID, ENAME, CITY and SALARY of those employees who belongs to London or Sydney.
+
+db.emp_206.find({
+	CITY : {$in : ['London', 'Sydney'] }
+},{
+	EID : 1, ENAME : 1, CITY : 1 , SALARY : 1, _id : 0
+})
+
+13. Display ENAME, SALARY, and CITY of those employee whose salary is more than 7000.
+
+db.emp_206.find({
+	SALARY : {$gt : 7000 }
+},{
+	 ENAME : 1, CITY : 1 , SALARY : 1, _id : 0
+})
+
+
+
+26. Display Female students.
+
+db.student_206.find({
+	GENDER : "Female"
+})
+
+27. Display students who belong to Rajkot city.
+
+
+db.student_206.find({
+	CITY : "Rajkot"
+})
+
+28. Display students studying in 7th sem.
+
+db.student_206.find({
+	SEM : 7
+})
+
+29. Display students not studying in 3rd sem.
+
+db.student_206.find({
+	SEM : { $ne : 3}
+})
+
+30. Display students whose roll no is greater than 107.
+
+db.student_206.find({
+	ROLLNO : { $gt : 107}
+})
+
+31. Display students whose city is Jamnagar or Baroda (use:IN)
+
+db.student_206.find({
+	CITY : { $in : ["Jamnagar", "Baroda"]}
+})
+
+32. Display students whose fees is less than 9000.
+
+db.student_206.find({
+	FEES : { $lt : 9000}
+})
+
+33. Display the roll no of those students who belongs to Mechanical department.
+
+db.student_206.find({
+	DEPARTMENT : 'Mechanical'
+},
+{
+	ROLLNO : 1
+})
+
+34. Display first 2 students names who lives in Baroda.
+
+db.student_206.find({
+	CITY : "Baroda"
+}).limit(2)
+
+35. Display Male students who studying in 3rd sem.
+
+db.student_206.find({
+	$and : [{
+		SEM : { $eq : 3}
+	},
+	{
+		GENDER: "Male"
+	}]
+})
+
+36. Display sname and city and fees of those students whose roll no is less than 105.
+
+db.student_206.find({
+	ROLLNO : { $lt : 105}
+},{
+	SNAME : 1, CITY : 1, FEES : 1, _id : 0
+})
+
+
+46. Display next 2 students after skipping first 2 whose city is Ahmedabad.
+
+db.student_206.find({
+	CITY : "Ahmedabad"
+}).limit(2).skip(2)
+
+47. Display rollno, sname, fees, and department of those students who is from Baroda and belongs to CE
+department.
+
+
+db.student_206.find({
+	$and : [{
+		DEPARTMENT : "CE"
+	},
+	{
+		CITY: "Baroda"
+	}]
+},
+{
+	ROLLNO : 1, FEES : 1, SNAME : 1,  DEPARTMENT : 1, _id : 0
+})
